@@ -1,18 +1,43 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/login';
-import Signup from './pages/signup';
-import Home from './pages/home';
-import Bookings from './pages/bookings';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/common/Navbar";
+import Login from "./pages/auth/login";
+import Signup from "./pages/auth/signup";
+import Home from "./pages/user/home";
+import Bookings from "./pages/user/bookings";
+import PackageDetails from "./pages/user/packageDetails";
+import PrivateRoute from "./components/common/PrivateRoute";
+import AdminDashboard from './pages/admin/AdminDashboard'
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/bookings" element={<Bookings />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-      </Routes>
+      <Navbar />
+      <div className="mt-4">
+        {" "}
+        {/* small margin below navbar */}
+        <Routes
+          path="/bookings"
+          element={
+            <PrivateRoute>
+              <Bookings />
+            </PrivateRoute>
+          }
+        >
+          <Route path="/" element={<Home />} />
+          <Route path="/bookings" element={<Bookings />} />
+          <Route path="/packages/:id" element={<PackageDetails />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute>
+                <AdminDashboard />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </div>
     </Router>
   );
 }
