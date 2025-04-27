@@ -1,14 +1,15 @@
-function Input({ label, type = 'text', value, onChange, required = false, className = '', placeholder = '' }) {
+function Input({ label, name, value, onChange, type = "text", placeholder, className = "" }) {
   return (
-    <div className={`w-full ${className}`}>
-      <label className="block mb-1 text-gray-600">{label}</label>
+    <div className="flex flex-col">
+      {label && <label htmlFor={name} className="mb-1 text-sm font-medium text-gray-700">{label}</label>}
       <input
-        type={type}
+        id={name}
+        name={name}
         value={value}
         onChange={onChange}
-        required={required}
+        type={type}
         placeholder={placeholder}
-        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+        className={`border rounded-md px-4 py-2 ${className}`}
       />
     </div>
   );

@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import api from '../../services/api';
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import Input from '../../components/ui/Input';
-import Button from '../../components/ui/Button'; 
+import Button from '../../components/ui/Button';
 import toast from 'react-hot-toast';
 import { jwtDecode } from 'jwt-decode';
+import API_ENDPOINTS from '../../constants/api.endpoint';
 
 function Login() {
   const navigate = useNavigate();
@@ -14,53 +15,65 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError(''); // Clear previous error
+
     try {
-      const res = await api.post('/auth/login', { email, password });
+      const res = await api.post(`${API_ENDPOINTS.LOGIN}`, { email, password });
       localStorage.setItem('token', res.data.token);
-      toast.success('login successful');
-  
+      toast.success('Login successful');
+
       const user = jwtDecode(res.data.token);
-  
+
       if (user.role === 'admin') {
         navigate('/admin');
       } else {
         navigate('/');
       }
     } catch (err) {
-      toast.error(err.response?.data?.message || 'login failed');
+      console.error('Login error:', err);
+
+      // If backend sends specific error message
+      if (err.response?.data?.message) {
+        setError(err.response.data.message);
+      } else {
+        setError('Login failed. Please try again.');
+      }
     }
   };
-  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-primary">login</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-primary">Login</h2>
+        
+        {/* Error message */}
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
+
         <form onSubmit={handleLogin} className="space-y-4">
           <Input
-            label="email"
+            label="Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
           <Input
-            label="password"
+            label="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-          <Button type="submit">login</Button>
+          <Button type="submit">Login</Button>
         </form>
+
         <p className="mt-4 text-center text-gray-600">
-          don't have an account?{' '}
+          Don't have an account?{' '}
           <span
             className="text-primary hover:underline cursor-pointer"
             onClick={() => navigate('/signup')}
           >
-            signup
+            Sign Up
           </span>
         </p>
       </div>

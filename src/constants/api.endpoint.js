@@ -3,8 +3,8 @@
 const API_ENDPOINTS = {
     LOGIN: '/auth/login',
     SIGNUP: '/auth/signup',
-    BOOKINGS: '/bookings',
-    PACKAGES: '/packages/search',
+    BOOKINGS: '/booking',
+    PACKAGES: '/packages',
     PACKAGE_BY_ID: '/packages', // + '/:id'
     ADMIN_PACKAGES: '/admin/package',
   };

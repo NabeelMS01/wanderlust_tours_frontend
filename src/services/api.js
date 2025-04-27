@@ -1,7 +1,8 @@
 import axios from 'axios';
+import config from '../config';
 
 const api = axios.create({
-  baseURL: process.env.BACKEND_API_ENDPOINT||'http://localhost:4000/api',  
+  baseURL:config.API_BASE_URL 
 });
 
  

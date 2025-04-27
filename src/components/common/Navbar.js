@@ -1,8 +1,28 @@
 import { Link, useNavigate } from 'react-router-dom';
+const jwtDecode = require( 'jwt-decode');  
+
 
 function Navbar() {
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem('token');
+  const token = localStorage.getItem('token');
+
+  let role = null;
+
+  if (token) {
+    try {
+      const decoded = jwtDecode.jwtDecode(token);
+
+
+      console.log(decoded,'=====');
+      
+      role = decoded.role;  
+    } catch (error) {
+      console.error('Error decoding token:', error);
+    }
+  }
+
+  const isLoggedIn = !!token;
+  const isAdmin = role === 'admin';
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -21,25 +41,29 @@ function Navbar() {
         {isLoggedIn ? (
           <>
             <Link to="/" className="text-gray-700 hover:text-primary">
-              home
+              Home
             </Link>
             <Link to="/bookings" className="text-gray-700 hover:text-primary">
-              my bookings
+              My Bookings
             </Link>
+
+            {isAdmin && (
+              <Link to="/admin" className="text-gray-700 hover:text-primary">
+                Admin Panel
+              </Link>
+            )}
+
             <button
               onClick={handleLogout}
               className="text-red-500 hover:text-red-700 transition duration-150"
             >
-              logout
+              Logout
             </button>
           </>
         ) : (
           <>
             <Link to="/login" className="text-gray-700 hover:text-primary">
-              login
-            </Link>
-            <Link to="/signup" className="text-gray-700 hover:text-primary">
-              signup
+              Login
             </Link>
           </>
         )}
