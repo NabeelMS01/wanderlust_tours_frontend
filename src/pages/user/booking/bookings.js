@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import api from '../../services/api';
-import API_ENDPOINTS from '../../constants/api.endpoint';
+import api from '../../../services/api';
+import API_ENDPOINTS from '../../../constants/api.endpoint';
 import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
-import config from '../../config';
+import config from '../../../config';
 
 function Bookings() {
   const [bookings, setBookings] = useState([]);
@@ -156,12 +156,12 @@ function Bookings() {
                       <p className="font-bold">₹{booking.totalPrice}</p>
                     </div>
                     <div className="flex flex-col space-y-2">
-                      <button
-                        onClick={() => navigate(`/package/${booking.package?._id}`)}
+                      {/* <button
+                        onClick={() => navigate(`/bookings/${booking.package?._id}`)}
                         className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-300 text-sm"
                       >
                         View Details
-                      </button>
+                      </button> */}
                       {booking.status === 'pending' && (
                         <>
                           <button

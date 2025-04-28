@@ -46,7 +46,7 @@ function Login() {
       <div className="bg-white p-8 rounded-xl shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center text-primary">Login</h2>
         
-        {/* Error message */}
+  
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
 
         <form onSubmit={handleLogin} className="space-y-4">

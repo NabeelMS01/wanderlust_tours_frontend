@@ -62,7 +62,7 @@ function Home() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      {/* Hero Section */}
+    
       <section
         className="hero-bg h-[80vh] flex items-center justify-center text-white bg-cover bg-center"
         style={{
@@ -79,7 +79,7 @@ function Home() {
         </div>
       </section>
 
-      {/* Search Section */}
+    
       <section className="bg-white py-8">
         <div className="max-w-5xl mx-auto px-6">
           <form
@@ -122,8 +122,7 @@ function Home() {
           </form>
         </div>
       </section>
-
-      {/* Packages Section */}
+ 
       <section className="py-12">
         <div className="max-w-7xl mx-auto px-6">
           {loading ? (

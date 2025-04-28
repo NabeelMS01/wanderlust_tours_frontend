@@ -84,7 +84,7 @@ function PackageDetails() {
 
   return (
     <div className="min-h-screen bg-gray-100">
-      {/* Hero Section */}
+ 
       <div
         className="h-96 flex items-end justify-center text-white p-8"
         style={{
@@ -99,12 +99,12 @@ function PackageDetails() {
         </div>
       </div>
 
-      {/* Main Content */}
+      
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        {/* Left Content */}
+      
         <div className="lg:col-span-2 space-y-8">
-          {/* Overview */}
+         
           <div className="bg-white p-6 rounded-xl shadow-sm">
             <h2 className="text-2xl font-bold mb-4">Package Overview</h2>
             <div className="text-gray-600 space-y-2">
@@ -114,7 +114,7 @@ function PackageDetails() {
             </div>
           </div>
 
-          {/* Included Services */}
+     
           <div className="bg-white p-6 rounded-xl shadow-sm">
             <h2 className="text-2xl font-bold mb-4">Included Services</h2>
             {travelPackage.includedServices.length === 0 ? (
@@ -128,7 +128,7 @@ function PackageDetails() {
             )}
           </div>
 
-          {/* Optional Services */}
+        
           <div className="bg-white p-6 rounded-xl shadow-sm">
             <h2 className="text-2xl font-bold mb-4">Optional Services</h2>
             {travelPackage.optionalServices.length === 0 ? (
@@ -154,7 +154,7 @@ function PackageDetails() {
           </div>
         </div>
 
-        {/* Right Sidebar - Booking Summary */}
+       
         <div className="sticky top-24 space-y-6">
           <div className="bg-white p-6 rounded-xl shadow-md">
             <h3 className="text-xl font-bold mb-4">Booking Summary</h3>
