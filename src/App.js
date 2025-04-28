@@ -6,8 +6,7 @@ import Home from "./pages/user/home";
 import Bookings from "./pages/user/booking/bookings";
 import PackageDetails from "./pages/user/packageDetails";
 import PrivateRoute from "./components/common/PrivateRoute";
-import AdminDashboard from './pages/admin/AdminDashboard';
-import BookingDetails from "./pages/user/booking/bookingDetail";
+import AdminDashboard from './pages/admin/AdminDashboard'; 
 
 function App() {
   return (
